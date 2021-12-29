@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="piano.css" />
+    <link rel="stylesheet" href="text.css" />
+    <script defer src="index.js"></script>
+    <title>Piano Keys to Guitar</title>
+  </head>
+  <body>
+    <div id="piano">
+      <div class="blackkeys">
+        <button type="button" id="cS" onclick="output('C#', play('audio/Cs.mp3'))">
+          <p>C#</p>
+        </button>
+        <button type="button" id="dS" onclick="output('D#', play('audio/Ds.mp3'))">
+          <p>D#</p>
+        </button>
+        <button type="button" id="fS" onclick="output('F#', play('audio/Fs.mp3'))">
+          <p>F#</p>
+        </button>
+        <button type="button" id="gS" onclick="output('G#', play('audio/Gs.mp3'))">
+          <p>G#</p>
+        </button>
+        <button type="button" id="aS" onclick="output('A#', play('audio/As.mp3'))">
+          <p>A#</p>
+        </button>
+      </div>
+      <div class="whitekeys">
+        <button type="button" id="c" onclick="output('C'), play('audio/C.mp3')">
+          <p>C</p>
+        </button>
+        <button type="button" id="d" onclick="output('D', play('audio/D.mp3'))">
+          <p>D</p>
+        </button>
+        <button type="button" id="e" onclick="output('E', play('audio/E.mp3'))">
+          <p>E</p>
+        </button>
+        <button type="button" id="f" onclick="output('F', play('audio/F.mp3'))">
+          <p>F</p>
+        </button>
+        <button type="button" id="g" onclick="output('G'), play('audio/G.mp3')">
+          <p>G</p>
+        </button>
+        <button type="button" id="a" onclick="output('A'), play('audio/A.mp3')">
+          <p>A</p>
+        </button>
+        <button type="button" id="b" onclick="output('B'), play('audio/B.mp3')">
+          <p>B</p>
+        </button>
+      </div>
+    </div>
+
+    <div id="text">
+      <button id="undo" onclick="undo()">Undo</button>
+      <p>
+        Selected Piano Note:
+        <span id="pianoinput"></span>
+      </p>
+      <p>
+        Translated to Guitar:
+        <span id="guitaroutput"></span>
+        <span id="G6" class="strings">E| --</span>
+        <span id="G5" class="strings">B| --</span>
+        <span id="G4" class="strings">G| --</span>
+        <span id="G3" class="strings">D| --</span>
+        <span id="G2" class="strings">A| --</span>
+        <span id="G1" class="strings">E| --</span>
+      </p>
+    </div>
+  </body>
+</html>

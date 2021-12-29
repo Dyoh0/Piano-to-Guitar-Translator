@@ -1,0 +1,122 @@
+#piano {
+  position: relative;
+  margin: auto;
+  height: 18vw;
+  width: 50vw;
+  top: 5vh;
+}
+
+.whitekeys {
+  display: flex;
+  width: 100%;
+  border: solid gray;
+}
+
+.blackkeys {
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+}
+
+.blackkeys button {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  border-bottom: none;
+  background-color: black;
+  color: white;
+  width: 2.5vw;
+  border: none;
+  font-size: 1.2em;
+}
+
+.whitekeys button {
+  height: 30vh;
+  width: 100%;
+  background-color: white;
+  border: none;
+  border-right: solid gray;
+  font-size: 1.2em;
+}
+
+.blackkeys button:hover,
+.whitekeys button:hover {
+  background-color: rgb(188, 255, 182);
+}
+
+.blackkeys button:active,
+.whitekeys button:active {
+  background-color: rgb(109, 255, 95);
+}
+
+#cS {
+  margin-left: 12%;
+}
+
+#dS {
+  margin-left: 8.5%;
+}
+
+#fS {
+  margin-left: 23.8%;
+}
+
+#gS,
+#aS {
+  margin-left: 8.8%;
+}
+
+#b {
+  border-right: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  #piano {
+    width: 90vw;
+    height: 10px;
+  }
+
+  .blackkeys button {
+    width: 5vw;
+    font-size: 1em;
+  }
+
+  #cS {
+    margin-left: 11.5%;
+  }
+
+  #dS {
+    margin-left: 8.5%;
+  }
+
+  #fS {
+    margin-left: 22.5%;
+  }
+
+  #gS,
+  #aS {
+    margin-left: 8.1%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .blackkeys button {
+    width: 7vw;
+  }
+  #cS {
+    margin-left: 10.5%;
+  }
+
+  #dS {
+    margin-left: 5.5%;
+  }
+
+  #fS {
+    margin-left: 20%;
+  }
+
+  #gS,
+  #aS {
+    margin-left: 5.5%;
+  }
+}
