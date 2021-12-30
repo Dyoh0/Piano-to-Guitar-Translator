@@ -56,6 +56,14 @@
     </div>
 
     <div id="text">
+      <label for="octave">Octave:</label>
+
+<select id="octave" name="octave" onchange="changeoctave()">
+  <option value="C2">C2</option>
+  <option value="C3" selected>C3</option>
+  <option value="C4">C4</option>
+</select>
+
       <button id="undo" onclick="undo()">Undo</button>
       <button id="tabdel" onclick="tabdel()">Delete last tab</button>
       <p>

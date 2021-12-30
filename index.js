@@ -1,5 +1,4 @@
 function play(url) {
-  console.log(url);
   const aud = new Audio(url);
   aud.play();
 }
@@ -7,6 +6,7 @@ function play(url) {
 const tabcopy = $("#tabs0").clone();
 var count = 0;
 var G6, G5, G4, G3, G2, G1;
+var octave = "C3";
 
 function reset() {
   G6 = document.getElementById("G6" + count);
@@ -20,14 +20,10 @@ function reset() {
 function addboard() {
   count++;
   let tabsid = "tabs" + count;
-  console.log("count:", count);
   tabcopy.clone().appendTo("#container");
   $("#container").contents().last().attr("id", tabsid);
-  console.log("tabsid:", tabsid);
   let childnodes = document.getElementById(tabsid).childNodes;
-  console.log(childnodes);
   for (x of childnodes) {
-    console.log("idnodename", x.id, x.nodeName);
     if (x.nodeName == "SPAN") {
       x.id = x.id.substr(0, 2) + count;
     }
@@ -36,7 +32,6 @@ function addboard() {
 
 function output(pianote) {
   reset();
-  console.log("G6:", G6);
   G6 = document.getElementById("G6" + count);
 
   if (screen.width < 490) limit = 29;
@@ -54,12 +49,141 @@ function output(pianote) {
   } else {
     document.getElementById("pianoinput").innerText = pianote;
     const guitarnote = translate(pianote);
-    document.getElementById("guitaroutput").innerText = guitarnote;
+    if (!guitarnote) {
+      switch (pianote) {
+        case "C":
+          document.getElementById("guitaroutput").innerText = "Nope.";
+          break;
+        case "C#":
+          document.getElementById("guitaroutput").innerText = "Nu-uh.";
+          break;
+        case "D":
+          document.getElementById("guitaroutput").innerText = "Try again!";
+          break;
+        case "D#":
+          document.getElementById("guitaroutput").innerText = "I wonder if guitars can have notes below E...";
+          break;
+      }
+    } else document.getElementById("guitaroutput").innerText = guitarnote;
   }
 }
 
 function translate(pianote) {
   let output, note, fret;
+  if (octave == "C2") {
+    var result = oct2(pianote);
+  } else if (octave == "C3") {
+    var result = oct3(pianote);
+  } else if (octave == "C4") {
+    var result = oct4(pianote);
+  }
+  note = result.note;
+  fret = result.fret;
+  addnote(note, fret);
+  output = note + fret;
+  return output;
+}
+
+function oct2(pianote) {
+  let note, fret;
+  switch (pianote) {
+    case "C":
+    case "C#":
+    case "D":
+    case "D#":
+      alert("This doesn't actually have an equivalent lol");
+      break;
+    case "E":
+      note = "e";
+      fret = 0;
+      break;
+    case "F":
+      note = "e";
+      fret = 1;
+      break;
+    case "G":
+      note = "e";
+      fret = 3;
+      break;
+    case "A":
+      note = "e";
+      fret = 5;
+      break;
+    case "B":
+      note = "A";
+      fret = 2;
+      break;
+    case "F#":
+      note = "e";
+      fret = 2;
+      break;
+    case "G#":
+      note = "e";
+      fret = 4;
+      break;
+    case "A#":
+      note = "A";
+      fret = 1;
+      break;
+  }
+  return { note, fret };
+}
+function oct3(pianote) {
+  let note, fret;
+  switch (pianote) {
+    case "C":
+      note = "A";
+      fret = 3;
+      break;
+    case "D":
+      note = "D";
+      fret = 0;
+      break;
+    case "E":
+      note = "D";
+      fret = 2;
+      break;
+    case "F":
+      note = "D";
+      fret = 3;
+      break;
+    case "G":
+      note = "D";
+      fret = 5;
+      break;
+    case "A":
+      note = "G";
+      fret = 2;
+      break;
+    case "B":
+      note = "G";
+      fret = 4;
+      break;
+    case "C#":
+      note = "A";
+      fret = 4;
+      break;
+    case "D#":
+      note = "D";
+      fret = 1;
+      break;
+    case "F#":
+      note = "D";
+      fret = 4;
+      break;
+    case "G#":
+      note = "G";
+      fret = 1;
+      break;
+    case "A#":
+      note = "G";
+      fret = 3;
+      break;
+  }
+  return { note, fret };
+}
+function oct4(pianote) {
+  let note, fret;
   switch (pianote) {
     case "C":
       note = "B";
@@ -78,16 +202,16 @@ function translate(pianote) {
       fret = 6;
       break;
     case "G":
-      note = "G";
-      fret = 0;
+      note = "E";
+      fret = 3;
       break;
     case "A":
-      note = "G";
-      fret = 2;
+      note = "E";
+      fret = 5;
       break;
     case "B":
-      note = "G";
-      fret = 4;
+      note = "E";
+      fret = 7;
       break;
     case "C#":
       note = "B";
@@ -102,17 +226,15 @@ function translate(pianote) {
       fret = 2;
       break;
     case "G#":
-      note = "G";
-      fret = 1;
+      note = "E";
+      fret = 4;
       break;
     case "A#":
-      note = "G";
-      fret = 3;
+      note = "E";
+      fret = 6;
       break;
   }
-  addnote(note, fret);
-  output = note + fret;
-  return output;
+  return { note, fret };
 }
 
 function addnote(exclude, fret) {
@@ -142,17 +264,43 @@ function addnote(exclude, fret) {
       G2.innerText += s;
       G1.innerText += s;
       break;
-    // case "C":
-    //   break;
-    // case "D":
-    //   break;
-    // case "F":
-    //   break;
-    // case "A":
-    //   break;
-    // case "B":
-    //   break;
+    case "D":
+      G6.innerText += s;
+      G5.innerText += s;
+      G4.innerText += s;
+      G3.innerText += fret + "--";
+      G2.innerText += s;
+      G1.innerText += s;
+      break;
+    case "A":
+      G6.innerText += s;
+      G5.innerText += s;
+      G4.innerText += s;
+      G3.innerText += s;
+      G2.innerText += fret + "--";
+      G1.innerText += s;
+      break;
+    case "B":
+      G6.innerText += s;
+      G5.innerText += s;
+      G4.innerText += s;
+      G3.innerText += s;
+      G2.innerText += fret + "--";
+      G1.innerText += s;
+      break;
+    case "e":
+      G6.innerText += s;
+      G5.innerText += s;
+      G4.innerText += s;
+      G3.innerText += s;
+      G2.innerText += s;
+      G1.innerText += fret + "--";
+      break;
   }
+}
+
+function changeoctave() {
+  octave = $("#octave").val();
 }
 
 function undo() {
