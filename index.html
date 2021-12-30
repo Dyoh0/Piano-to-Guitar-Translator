@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="piano.css" />
     <link rel="stylesheet" href="text.css" />
     <script defer src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Piano Keys to Guitar</title>
   </head>
   <body>
@@ -55,19 +57,23 @@
 
     <div id="text">
       <button id="undo" onclick="undo()">Undo</button>
+      <button id="tabdel" onclick="tabdel()">Delete last tab</button>
       <p>
         Selected Piano Note:
         <span id="pianoinput"></span>
       </p>
-      <p>
-        Translated to Guitar:
+      <p>Translated to Guitar:
         <span id="guitaroutput"></span>
-        <span id="G6" class="strings">E| --</span>
-        <span id="G5" class="strings">B| --</span>
-        <span id="G4" class="strings">G| --</span>
-        <span id="G3" class="strings">D| --</span>
-        <span id="G2" class="strings">A| --</span>
-        <span id="G1" class="strings">E| --</span>
+      <div id="container">
+        <div id="tabs0" class="tabs">
+          <span id="G60" class="strings">E| --</span>
+          <span id="G50" class="strings">B| --</span>
+          <span id="G40" class="strings">G| --</span>
+          <span id="G30" class="strings">D| --</span>
+          <span id="G20" class="strings">A| --</span>
+          <span id="G10" class="strings">E| --</span>
+        </div>
+      </div>
       </p>
     </div>
   </body>
