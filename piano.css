@@ -40,12 +40,14 @@
 }
 
 .blackkeys button:hover,
-.whitekeys button:hover {
+.whitekeys button:hover,
+#text button:hover {
   background-color: rgb(188, 255, 182);
 }
 
 .blackkeys button:active,
-.whitekeys button:active {
+.whitekeys button:active,
+#text button:active {
   background-color: rgb(109, 255, 95);
 }
 
