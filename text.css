@@ -14,12 +14,16 @@
 
 #text button {
   background-color: white;
-  width: 80px;
+  width: 140;
   height: 30px;
   border-radius: 6px;
   border-color: black;
   margin-top: 2vh;
   font-size: 0.8em;
+}
+
+.tabs {
+  margin-bottom: 2vh;
 }
 
 @media only screen and (max-width: 1450px) {
