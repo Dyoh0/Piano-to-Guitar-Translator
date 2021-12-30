@@ -37,9 +37,13 @@
     top: 35vh;
     width: 90vw;
   }
+
+  .tabs {
+    margin-bottom: 3vh;
+  }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 600px) {
   #text {
     font-size: 1.2em;
   }

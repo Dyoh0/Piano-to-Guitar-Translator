@@ -17,7 +17,7 @@ function reset() {
   G1 = document.getElementById("G1" + count);
 }
 
-function t() {
+function addboard() {
   count++;
   let tabsid = "tabs" + count;
   console.log("count:", count);
@@ -38,8 +38,19 @@ function output(pianote) {
   reset();
   console.log("G6:", G6);
   G6 = document.getElementById("G6" + count);
-  if (G6.innerText.length >= 127) {
-    t();
+
+  if (screen.width < 490) limit = 29;
+  else if (screen.width < 600) limit = 40;
+  else if (screen.width < 700) limit = 45;
+  else if (screen.width < 800) limit = 55;
+  else if (screen.width < 900) limit = 65;
+  else if (screen.width < 1100) limit = 70;
+  else if (screen.width < 1400) limit = 80;
+  else if (screen.width < 1700) limit = 95;
+  else if (screen.width < 1800) limit = 105;
+  else limit = 125;
+  if (G6.innerText.length >= limit) {
+    addboard();
   } else {
     document.getElementById("pianoinput").innerText = pianote;
     const guitarnote = translate(pianote);
