@@ -46,26 +46,27 @@ function output(pianote) {
   else limit = 125;
   if (G6.innerText.length >= limit) {
     addboard();
-  } else {
-    document.getElementById("pianoinput").innerText = pianote;
-    const guitarnote = translate(pianote);
-    if (!guitarnote) {
-      switch (pianote) {
-        case "C":
-          document.getElementById("guitaroutput").innerText = "Nope.";
-          break;
-        case "C#":
-          document.getElementById("guitaroutput").innerText = "Nu-uh.";
-          break;
-        case "D":
-          document.getElementById("guitaroutput").innerText = "Try again!";
-          break;
-        case "D#":
-          document.getElementById("guitaroutput").innerText = "I wonder if guitars can have notes below E...";
-          break;
-      }
-    } else document.getElementById("guitaroutput").innerText = guitarnote;
+    reset();
+    G6 = document.getElementById("G6" + count);
   }
+  document.getElementById("pianoinput").innerText = pianote;
+  const guitarnote = translate(pianote);
+  if (!guitarnote) {
+    switch (pianote) {
+      case "C":
+        document.getElementById("guitaroutput").innerText = "Nope.";
+        break;
+      case "C#":
+        document.getElementById("guitaroutput").innerText = "Nu-uh.";
+        break;
+      case "D":
+        document.getElementById("guitaroutput").innerText = "Try again!";
+        break;
+      case "D#":
+        document.getElementById("guitaroutput").innerText = "I wonder if guitars can have notes below E...";
+        break;
+    }
+  } else document.getElementById("guitaroutput").innerText = guitarnote;
 }
 
 function translate(pianote) {
@@ -106,8 +107,8 @@ function oct2(pianote) {
       fret = 3;
       break;
     case "A":
-      note = "e";
-      fret = 5;
+      note = "A";
+      fret = 0;
       break;
     case "B":
       note = "A";
@@ -194,12 +195,12 @@ function oct4(pianote) {
       fret = 3;
       break;
     case "E":
-      note = "B";
-      fret = 5;
+      note = "E";
+      fret = 0;
       break;
     case "F":
-      note = "B";
-      fret = 6;
+      note = "E";
+      fret = 1;
       break;
     case "G":
       note = "E";
@@ -273,14 +274,6 @@ function addnote(exclude, fret) {
       G1.innerText += s;
       break;
     case "A":
-      G6.innerText += s;
-      G5.innerText += s;
-      G4.innerText += s;
-      G3.innerText += s;
-      G2.innerText += fret + "--";
-      G1.innerText += s;
-      break;
-    case "B":
       G6.innerText += s;
       G5.innerText += s;
       G4.innerText += s;
