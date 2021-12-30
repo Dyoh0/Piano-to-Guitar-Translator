@@ -4,17 +4,47 @@ function play(url) {
   aud.play();
 }
 
-const G6 = document.getElementById("G6");
-const G5 = document.getElementById("G5");
-const G4 = document.getElementById("G4");
-const G3 = document.getElementById("G3");
-const G2 = document.getElementById("G2");
-const G1 = document.getElementById("G1");
+const tabcopy = $("#tabs0").clone();
+var count = 0;
+var G6, G5, G4, G3, G2, G1;
+
+function reset() {
+  G6 = document.getElementById("G6" + count);
+  G5 = document.getElementById("G5" + count);
+  G4 = document.getElementById("G4" + count);
+  G3 = document.getElementById("G3" + count);
+  G2 = document.getElementById("G2" + count);
+  G1 = document.getElementById("G1" + count);
+}
+
+function t() {
+  count++;
+  let tabsid = "tabs" + count;
+  console.log("count:", count);
+  tabcopy.clone().appendTo("#container");
+  $("#container").contents().last().attr("id", tabsid);
+  console.log("tabsid:", tabsid);
+  let childnodes = document.getElementById(tabsid).childNodes;
+  console.log(childnodes);
+  for (x of childnodes) {
+    console.log("idnodename", x.id, x.nodeName);
+    if (x.nodeName == "SPAN") {
+      x.id = x.id.substr(0, 2) + count;
+    }
+  }
+}
 
 function output(pianote) {
-  document.getElementById("pianoinput").innerText = pianote;
-  const guitarnote = translate(pianote);
-  document.getElementById("guitaroutput").innerText = guitarnote;
+  reset();
+  console.log("G6:", G6);
+  G6 = document.getElementById("G6" + count);
+  if (G6.innerText.length >= 127) {
+    t();
+  } else {
+    document.getElementById("pianoinput").innerText = pianote;
+    const guitarnote = translate(pianote);
+    document.getElementById("guitaroutput").innerText = guitarnote;
+  }
 }
 
 function translate(pianote) {
@@ -115,14 +145,23 @@ function addnote(exclude, fret) {
 }
 
 function undo() {
-  if (G6.innerText == "E| --") {
+  if (document.getElementById("G6" + count).innerText == "E| --") {
     alert("That sure is a bad idea, my guy.");
   } else {
+    reset();
     G6.innerText = G6.innerText.slice(0, -3);
     G5.innerText = G5.innerText.slice(0, -3);
     G4.innerText = G4.innerText.slice(0, -3);
     G3.innerText = G3.innerText.slice(0, -3);
     G2.innerText = G2.innerText.slice(0, -3);
     G1.innerText = G1.innerText.slice(0, -3);
+  }
+}
+
+function tabdel() {
+  if (count == 0) alert("Okay but why would you want to do that tho");
+  else {
+    $("#container").contents().last().remove();
+    count--;
   }
 }
