@@ -92,7 +92,7 @@ function oct2(pianote) {
     case "C#":
     case "D":
     case "D#":
-      alert("This doesn't actually have an equivalent lol");
+      alert("This doesn't actually have an equivalent");
       break;
     case "E":
       note = "e";
